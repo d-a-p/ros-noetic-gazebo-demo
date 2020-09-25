@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ros-dap:0.0.1
+
+    tty:
+      true
+    stdin_open:
+      true
+    environment:
+      - DISPLAY=unix:0.0
+      - QT_X11_NO_MITSHM=1
+    command: >
+      /bin/bash
+
+    volumes:
+      - /home/ros/catkin_ws:/home/catkin_ws
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
